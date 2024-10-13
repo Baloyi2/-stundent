@@ -2,19 +2,19 @@
 
 .top-border {
     display: flex;
-    justify-content: space-between; /* Space between items */
+    justify-content: center; /* Center the content */
     align-items: center; 
     padding: 15px 20px;
     border-bottom: 2px solid #007bff; 
     background-color: #f4f4f4; 
 }
 
-/* Center the footer-button elements */
-.footer-buttons {
-    display: flex; /* Use flexbox for alignment */
-    justify-content: center; /* Center the buttons */
-    flex-grow: 1; /* Allow this section to grow and take available space */
+/* Add a class to specifically target the settings button */
+.settings-button {
+    margin: 0; /* Remove margin to center it */
 }
+
+/* Other existing styles... */
 
 .footer-select {
     padding: 10px;
@@ -23,7 +23,6 @@
     border: 1px solid #ccc;
     cursor: pointer;
     max-width: 200px; 
-    margin-left: auto; /* Push the select to the right */
 }
 
 .footer-button {
@@ -45,16 +44,17 @@
 .dropdown {
     position: relative;
     display: inline-block;
-    margin: 0 10px; /* Space between buttons */
+    margin-right: 10px; /* Space between buttons */
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 200px; 
+    min-width: 200px; /* Adjust width for better alignment */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    flex-direction: column; /* Align items vertically */
 }
 
 .dropdown-content button,
@@ -76,7 +76,7 @@
 }
 
 .dropdown:hover .dropdown-content {
-    display: block; 
+    display: block; /* Show dropdown on hover */
 }
 
 /* Overlay styles */
