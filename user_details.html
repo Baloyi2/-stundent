@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link rel="stylesheet" href="user_details.css"> <!-- Link to user_details.css -->
+</head>
+<body>
+
+    <h1>Account</h1> <!-- Changed from User Details to Account -->
+    
+    <div id="profilePictureSection">
+        <input type="file" id="profileImageInput" accept="image/*" style="display: none;" onchange="loadProfileImage(event)">
+        <button id="uploadButton" class="uploadButton" onclick="document.getElementById('profileImageInput').click();"></button>
+        <p style="margin-top: 10px; color: #333;">Upload Profile Picture</p>
+    </div>
+    
+    <div id="userDetails" style="display: none;">
+        <p>Name: John Doe</p>
+        <p>Email: johndoe@example.com</p>
+        <p>Role: User</p>
+    </div>
+    
+    <div class="top-right">
+        <div class="home-container">
+            <button class="goToHome" onclick="goToUserHome()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" viewBox="0 0 24 24">
+                    <path d="M12 3l10 9h-3v9H5v-9H2l10-9z"/>
+                </svg>
+            </button>
+            <p class="home-text">Home</p> <!-- Home label -->
+        </div>
+        
+        <button class="logout" onclick="logout()">Log out</button>
+        <button class="remove-account" onclick="removeAccount()">Remove Account</button> <!-- New Remove Account button -->
+    </div>
+
+    <script src="st.js"></script> <!-- Main JavaScript file -->
+</body>
+</html>

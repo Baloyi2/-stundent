@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+
+    <h1>Create Account</h1>
+    <div class="container">
+        <input type="text" id="newName" placeholder="name" required>
+
+        <input type="text" id="newSurname" placeholder="surname" required>
+
+        <div class="username-container">
+            <span class="emoji">👤</span> <!-- Human-like emoji -->
+            <input type="text" id="newUsername" placeholder="username" required>
+        </div>
+
+        <div class="email-container">
+            <span class="emoji">✉</span> <!-- Email emoji -->
+            <input type="email" id="newEmail" placeholder="email" required>
+        </div>
+
+        <div class="password-container">
+            <span class="emoji">🔑</span> <!-- Key emoji -->
+            <input type="password" id="newPassword" placeholder="password" required>
+            <label style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
+                <input type="checkbox" id="togglePassword"> Show
+            </label>
+        </div>
+    </div>
+    
+    <button onclick="createAccount()">Sign Up</button>
+    <button onclick="goToHome()">Back</button>
+
+    <!-- Link to JavaScript files -->
+    <script src="st.js"></script>
+   
+</body>
+</html>

@@ -1,0 +1,150 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff; /* Light background color */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    color: #333; /* Text color */
+    text-align: center; /* Center text */
+    position: relative; /* Enable absolute positioning of children */
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #4a90e2; /* Heading color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center; /* Center text in container */
+}
+
+input {
+    width: 55%; /* Set width to 55% for all inputs */
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+/* Specific styling for each input type */
+.input-name {
+    border: 1px solid #007bff; /* Blue border */
+}
+
+.input-surname {
+    border: 1px solid #ffc107; /* Yellow border */
+}
+
+.input-username {
+    border: 1px solid #28a745; /* Green border */
+}
+
+.input-email {
+    border: 1px solid #17a2b8; /* Teal border */
+}
+
+.input-password {
+    border: 1px solid #dc3545; /* Red border */
+}
+
+input:focus {
+    border-color: #5cb85c; /* Change border color on focus */
+    outline: none;
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+button {
+    padding: 12px;
+    background-color: #5cb85c;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, margin-left 0.5s; /* Added margin-left transition */
+    margin-top: 10px; /* Space between buttons */
+    width: max-content; /* Set width to fit the content */
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button.move-left {
+    margin-left: -50px; /* Move the button to the left */
+}
+
+button:last-of-type {
+    background-color: #d9534f;
+}
+
+button:last-of-type:hover {
+    background-color: #c9302c;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem; /* Smaller font size for smaller screens */
+    }
+    button {
+        padding: 10px; /* Adjust button padding */
+    }
+}
+
+/* Emoji Styles */
+.username-container {
+    display: flex;
+    align-items: center; /* Center the items vertically */
+}
+
+.email-container {
+    display: flex;
+    align-items: center; /* Center the items vertically */
+    margin: 10px 0; /* Space above and below the container */
+}
+
+.password-container {
+    display: flex;
+    align-items: center; /* Center the items vertically */
+    position: relative; /* Enable absolute positioning for the label */
+}
+
+.emoji {
+    background-color: #003366; /* Dark blue background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Width of the emoji box */
+    height: 40px; /* Height of the emoji box */
+    border-radius: 50%; /* Make it circular */
+    margin-right: 10px; /* Space between emoji and input */
+    color: white; /* White color for the emoji */
+    font-size: 1.5rem; /* Size of the emoji */
+}

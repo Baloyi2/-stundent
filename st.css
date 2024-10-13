@@ -1,0 +1,124 @@
+/* Combined CSS */
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('stD.jpg'); /* Background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the background image */
+    color: #fff; /* Default text color */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center; /* Center text */
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for depth */
+}
+
+/* Paragraph Styles */
+p {
+    font-size: 1.5rem;
+    margin-bottom: 10px; /* Adjusted margin */
+    color: #000; /* Black text */
+    font-weight: bold; /* Make paragraph text bold */
+}
+
+/* Input Styles */
+input {
+    width: 55%; /* Set width to 55% */
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #007bff; /* Blue border */
+    border-radius: 5px;
+    font-size: 16px;
+    transition: box-shadow 0.3s;
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background */
+    color: #003366; /* Dark blue text color */
+    font-weight: bold; /* Bold text */
+}
+
+/* Input focus effect */
+input:focus {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Light shadow on focus */
+    outline: none;
+}
+
+/* Placeholder Styles */
+input::placeholder {
+    color: #007bff; /* Blue placeholder color */
+    font-style: italic; /* Italicize placeholder text */
+}
+
+/* Button Styles */
+button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background 0.3s ease, transform 0.2s ease; /* Transition effects */
+    display: inline-block; /* Allow max-content width */
+    margin: 5px auto; /* Center horizontally with small margin */
+    width: max-content; /* Set width to max-content */
+}
+
+/* Log In Button Styles */
+#loginButton {
+    background-color: #6bcf84; /* Light green */
+    color: #fff;
+}
+
+#loginButton:hover {
+    background-color: #5abf6b; /* Darker green on hover */
+    transform: scale(1.05); /* Slightly grow on hover */
+}
+
+/* Sign Up Button Styles */
+#signupButton {
+    background-color: #ff6b6b; /* Light coral */
+    color: #fff;
+}
+
+#signupButton:hover {
+    background-color: #ff4f4f; /* Darker coral on hover */
+    transform: scale(1.05); /* Slightly grow on hover */
+}
+
+/* Button hover effects */
+button:hover {
+    background-color: #4cae4c; /* Darker green on hover */
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5rem; /* Smaller font size for smaller screens */
+    }
+
+    p {
+        font-size: 1.2rem; /* Smaller font size for smaller screens */
+    }
+
+    button {
+        font-size: 1rem; /* Smaller font size for buttons */
+        width: auto; /* Reset width for smaller screens */
+    }
+}

@@ -1,0 +1,102 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    text-align: center;
+    margin: 0;
+    padding: 50px 20px;
+    color: #333;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+button {
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 1.2rem;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button i {
+    margin-right: 8px; /* Space between the icon and text */
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+button:nth-child(1) {
+    background-color: #ff6b6b; /* Grade 10 button color */
+}
+
+button:nth-child(2) {
+    background-color: #f7d94c; /* Grade 11 button color */
+}
+
+button:nth-child(3) {
+    background-color: #6bcf84; /* Grade 12 button color */
+}
+
+button:focus {
+    outline: none;
+}
+
+button:hover:nth-child(1) {
+    background-color: #ff4d4d; /* Darker shade on hover for Grade 10 */
+}
+
+button:hover:nth-child(2) {
+    background-color: #f1c73a; /* Darker shade on hover for Grade 11 */
+}
+
+button:hover:nth-child(3) {
+    background-color: #5abf6b; /* Darker shade on hover for Grade 12 */
+}
+
+/* Apps Button Styles */
+#appsButton {
+    padding: 10px; /* Add padding */
+    background-color: #007bff; /* Button color */
+    color: white; /* Icon color */
+    border: none; /* No border */
+    border-radius: 50%; /* Rounded shape */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+    display: flex; /* Flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    width: 50px; /* Set width */
+    height: 50px; /* Set height */
+    position: absolute; /* Position it absolutely */
+    top: 20px; /* Distance from top */
+    left: 20px; /* Distance from left */
+}
+
+#appsButton:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+#appsButton i {
+    font-size: 20px; /* Icon size */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        width: 90%;
+        font-size: 1rem;
+    }
+}

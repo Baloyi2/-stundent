@@ -1,0 +1,88 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    text-align: center;
+    margin: 0;
+    padding: 50px 20px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height */
+    justify-content: space-between; /* Space out items */
+    position: relative; /* Make body the reference point for absolute positioning */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items */
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin-bottom: 20px; /* Space below buttons */
+}
+
+.math-quiz-wrapper, .mathletic-wrapper {
+    margin: 0 10px; /* Add space between the buttons */
+}
+
+.round-button {
+    width: 100px; /* Set a fixed width */
+    height: 100px; /* Set a fixed height */
+    border-radius: 50%; /* Make it round */
+    display: flex; /* Use flexbox to center content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: transform 0.2s ease; /* Transition effect */
+}
+
+.math-quiz-button {
+    background-image: url('quiz.jpg'); /* Image for Math Quiz */
+    background-size: cover; /* Cover the entire button */
+    background-position: center; /* Center the image */
+}
+
+.mathletic-button {
+    background-image: url('math.jpg'); /* Image for Mathletic App */
+    background-size: cover; /* Cover the entire button */
+    background-position: center; /* Center the image */
+}
+
+.button-text {
+    margin-top: 10px; /* Space above the text */
+    color: white; /* Text color */
+    font-weight: bold; /* Optional: make text bold */
+}
+
+.round-button:hover {
+    transform: scale(1.05); /* Scale on hover */
+}
+
+.home-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    background-color: #6bcf84; /* Home button color */
+    position: absolute; /* Position it absolutely */
+    left: 20px; /* Distance from the left */
+    bottom: 20px; /* Distance from the bottom */
+}
+
+.home-button:hover {
+    background-color: #5abf6b; /* Darker shade on hover */
+    transform: scale(1.05); /* Scale on hover */
+}
