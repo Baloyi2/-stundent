@@ -1,12 +1,20 @@
 let currentQuestionIndex = 0;
 let score = 0;
-let totalQuestions; // Total number of questions to generate
+let totalQuestions; 
 const quizData = [];
 
-// Function to start the quiz
+// Show question count input after selecting level
+function showQuestionCount() {
+    const levelSelection = document.querySelector('.level-selection');
+    const startSection = document.getElementById('start');
+    levelSelection.style.display = 'none'; // Hide level selection
+    startSection.style.display = 'block'; // Show question count input
+}
+
+// Start the quiz
 function startQuiz() {
     const input = document.getElementById('numQuestions').value;
-    const selectedLevel = document.getElementById('quizLevel').value; // Get selected level
+    const selectedLevel = document.getElementById('quizLevel').value; 
     totalQuestions = parseInt(input);
 
     if (isNaN(totalQuestions) || totalQuestions < 4 || totalQuestions > 25) {
@@ -14,63 +22,78 @@ function startQuiz() {
         return;
     }
 
-    document.getElementById('start').style.display = 'none'; // Hide the start section
-    document.getElementById('quizLevel').style.display = 'none'; // Hide the quiz level dropdown
-    generateRandomQuestions(selectedLevel); // Generate questions based on selected level
+    // Hide the start section and input elements
+    document.getElementById('start').style.display = 'none'; 
+
+    // Generate questions and display the first question
+    generateRandomQuestions(selectedLevel); 
 }
 
-// Function to generate random questions
+// Generate random questions based on the selected level
 function generateRandomQuestions(level) {
-    quizData.length = 0; // Clear previous quiz data
+    quizData.length = 0; 
 
     for (let i = 0; i < totalQuestions; i++) {
-        let range;
-        if (level === 'basic') {
-            range = 50; // Basic level: numbers between 0 and 50
-        } else if (level === 'intermediate') {
-            range = 100; // Intermediate level: numbers between 0 and 100
-        } else if (level === 'advanced') {
-            range = 176; // Advanced level: numbers between 0 and 175
-        }
-
+        let range = level === 'basic' ? 50 : level === 'intermediate' ? 100 : 176;
         const num1 = Math.floor(Math.random() * range);
         const num2 = Math.floor(Math.random() * range);
         const operators = ['+', '-', '*', '/'];
-        const operator = operators[Math.floor(Math.random() * operators.length)]; // Randomly choose an operator
+        const operator = operators[Math.floor(Math.random() * operators.length)];
 
-        let correctAnswer;
-
-        // Calculate the correct answer based on the operator
-        if (operator === '+') {
-            correctAnswer = num1 + num2;
-        } else if (operator === '-') {
-            correctAnswer = num1 - num2;
-        } else if (operator === '*') {
-            correctAnswer = num1 * num2;
-        } else if (operator === '/') {
-            correctAnswer = num2 !== 0 ? Math.floor(num1 / num2) : num1; // Avoid division by zero
-        }
-
-        // Generate answer options
+        let correctAnswer = calculateAnswer(num1, num2, operator);
         const answers = generateAnswerOptions(correctAnswer);
         
         quizData.push({
             question: `What is ${num1} ${operator} ${num2}?`,
             answers: answers,
-            correct: answers.indexOf(correctAnswer) // Get the index of the correct answer
+            correct: answers.indexOf(correctAnswer)
         });
     }
 
-    loadQuestion(); // Load the first question
+    loadQuestion(); 
 }
 
-// Function to generate answer options
+// Function to calculate the answer based on operator
+function calculateAnswer(num1, num2, operator) {
+    let result;
+    switch (operator) {
+        case '+':
+            result = num1 + num2;
+            break;
+        case '-':
+            result = num1 - num2;
+            break;
+        case '*':
+            result = num1 * num2;
+            break;
+        case '/':
+            result = num2 !== 0 ? num1 / num2 : num1; // Avoid division by zero
+            break;
+        default:
+            return "0"; // Default case
+    }
+
+    // Format result to decimal only if necessary
+    return result % 1 === 0 ? result.toString() : result.toFixed(2); // Return as string for consistency
+}
+
+// Generate answer options
 function generateAnswerOptions(correctAnswer) {
     const answers = new Set();
     answers.add(correctAnswer);
 
+    // Generate one incorrect answer based on the type of the correct answer
+    if (correctAnswer.includes('.')) {
+        const incorrectAnswer = (parseFloat(correctAnswer) + (Math.random() * 5)).toFixed(2);
+        answers.add(incorrectAnswer);
+    } else {
+        const incorrectAnswer = parseInt(correctAnswer) + Math.floor(Math.random() * 3) + 1;
+        answers.add(incorrectAnswer.toString());
+    }
+
+    // Generate other incorrect answers (decimal numbers)
     while (answers.size < 4) {
-        const randomAnswer = Math.floor(Math.random() * 176);
+        const randomAnswer = (Math.random() * 176).toFixed(2); // Random decimal number
         if (randomAnswer !== correctAnswer) {
             answers.add(randomAnswer);
         }
@@ -79,6 +102,7 @@ function generateAnswerOptions(correctAnswer) {
     return Array.from(answers).sort(() => Math.random() - 0.5); // Shuffle the answers
 }
 
+// Load the current question
 function loadQuestion() {
     const quizContainer = document.getElementById('quiz');
     const questionData = quizData[currentQuestionIndex];
@@ -91,71 +115,69 @@ function loadQuestion() {
             </div>
         `).join('')}
     `;
-    quizContainer.style.display = 'block'; // Show quiz container
-    document.getElementById('feedback').style.display = 'none'; // Hide feedback initially
+    quizContainer.style.display = 'block';
+    document.getElementById('feedback').style.display = 'none'; 
 }
 
-function selectAnswer(index, element) {
+// Select an answer
+function selectAnswer(selectedIndex, element) {
     const questionData = quizData[currentQuestionIndex];
-    const feedback = document.getElementById('feedback');
+    const correctIndex = questionData.correct;
 
-    // Highlight the selected answer in gold
-    element.style.backgroundColor = 'gold';
-
-    if (index === questionData.correct) {
+    if (selectedIndex === correctIndex) {
         score++;
-        feedback.textContent = "Correct!";
-        feedback.className = 'correct'; // Add correct class for styling
+        element.classList.add('correct');
+        document.getElementById('feedback').innerText = 'Correct!';
     } else {
-        feedback.textContent = "Incorrect. The correct answer was " + questionData.answers[questionData.correct] + ".";
-        feedback.className = 'incorrect'; // Add incorrect class for styling
+        element.classList.add('incorrect');
+        document.querySelectorAll('.answer')[correctIndex].classList.add('correct');
+        document.getElementById('feedback').innerText = `Incorrect! The correct answer was: ${questionData.answers[correctIndex]}`;
     }
 
-    feedback.style.display = 'block'; // Show feedback
+    // Disable further clicking and show feedback
+    document.querySelectorAll('.answer').forEach(answer => answer.onclick = null);
+    document.getElementById('feedback').style.display = 'block';
 
-    // Move to the next question after a brief delay
-    setTimeout(() => {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < quizData.length) {
+    // Move to the next question after a delay
+    currentQuestionIndex++;
+    if (currentQuestionIndex < totalQuestions) {
+        setTimeout(() => {
+            document.getElementById('feedback').style.display = 'none';
             loadQuestion();
-        } else {
-            feedback.style.display = 'none'; // Hide feedback before displaying score
-            displayScore();
-        }
-    }, 2000); // wait 2 seconds before loading the next question
+        }, 2000); // 2 seconds delay
+    } else {
+        setTimeout(showScore, 2000); // Show score after the last question
+    }
 }
 
-function displayScore() {
-    const quizContainer = document.getElementById('quiz');
-    const scoreDisplay = document.getElementById('score');
-    const restartButton = document.getElementById('restartButton');
-    const continueButton = document.getElementById('continueButton');
-
-    quizContainer.style.display = 'none';
-    scoreDisplay.style.display = 'block';
-    scoreDisplay.innerHTML = `You scored ${score} out of ${totalQuestions}.`;
-    restartButton.style.display = 'block';
-    continueButton.style.display = 'block'; // Show continue button
+// Show the final score
+function showScore() {
+    document.getElementById('quiz').style.display = 'none';
+    document.getElementById('feedback').style.display = 'none';
+    const scorePercentage = (score / totalQuestions) * 100;
+    document.getElementById('score').innerText = `Your score: ${score} out of ${totalQuestions} (${scorePercentage.toFixed(2)}%)`;
+    document.getElementById('score').style.display = 'block';
+    document.getElementById('restartButton').style.display = 'block';
+    document.getElementById('continueButton').style.display = 'block';
 }
 
-function goToGrades() {
-    window.location.href = 'grades.html'; // Adjust this to your actual grades page URL
-}
-
+// Restart the quiz
 function restartQuiz() {
     currentQuestionIndex = 0;
     score = 0;
     document.getElementById('score').style.display = 'none';
     document.getElementById('restartButton').style.display = 'none';
-    document.getElementById('quiz').style.display = 'none';
-    document.getElementById('start').style.display = 'block'; // Show start section again
-    document.getElementById('numQuestions').value = ''; // Clear input
+    document.getElementById('continueButton').style.display = 'none';
+    document.querySelector('.level-selection').style.display = 'flex';
+    showQuestionCount();
 }
 
-// Back to user home button functionality
+// Placeholder function for back button
 function goToUserHome() {
-    window.location.href = 'user_home.html'; // Redirect to user home page
+    alert('Returning to user home.');
 }
 
-// Add event listener for back button
-document.getElementById('backButton').addEventListener('click', goToUserHome);
+// Placeholder function for continue button
+function goToGrades() {
+    alert('Continuing to grades.');
+}
