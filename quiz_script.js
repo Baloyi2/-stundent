@@ -156,16 +156,7 @@ function showScore() {
     document.getElementById('feedback').style.display = 'none';
     
     const scorePercentage = (score / totalQuestions) * 100;
-
-    // Determine how to format the score percentage
-    let formattedScorePercentage;
-    if (scorePercentage % 1 === 0) {
-        // No decimal part, use whole number
-        formattedScorePercentage = Math.round(scorePercentage);
-    } else {
-        // Has decimal part, use fixed to two decimal places
-        formattedScorePercentage = scorePercentage.toFixed(2);
-    }
+    let formattedScorePercentage = scorePercentage % 1 === 0 ? Math.round(scorePercentage) : scorePercentage.toFixed(2);
 
     document.getElementById('score').innerHTML = `
         <img id="resultImage" src="hund.png" alt="Quiz Result" style="width: 100%; max-width: 300px;">
@@ -197,6 +188,12 @@ function goToGrades() {
     document.getElementById('continueButton').style.display = 'none';
     document.getElementById('quiz').style.display = 'none'; // Hide the quiz
     document.querySelector('.level-selection').style.display = 'flex'; // Show level selection
+}
+
+// Open settings
+function openSettings() {
+    // Placeholder for settings functionality
+    alert('Settings opened!'); // Replace with actual settings panel
 }
 
 // Placeholder function for back button
