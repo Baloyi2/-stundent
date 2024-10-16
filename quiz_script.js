@@ -154,8 +154,24 @@ function selectAnswer(selectedIndex, element) {
 function showScore() {
     document.getElementById('quiz').style.display = 'none';
     document.getElementById('feedback').style.display = 'none';
+    
     const scorePercentage = (score / totalQuestions) * 100;
-    document.getElementById('score').innerText = `Your score: ${score} out of ${totalQuestions} (${scorePercentage.toFixed(2)}%)`;
+
+    // Determine how to format the score percentage
+    let formattedScorePercentage;
+    if (scorePercentage % 1 === 0) {
+        // No decimal part, use whole number
+        formattedScorePercentage = Math.round(scorePercentage);
+    } else {
+        // Has decimal part, use fixed to two decimal places
+        formattedScorePercentage = scorePercentage.toFixed(2);
+    }
+
+    document.getElementById('score').innerHTML = `
+        <img id="resultImage" src="hund.png" alt="Quiz Result" style="width: 100%; max-width: 300px;">
+        Your score: ${score} out of ${totalQuestions} (${formattedScorePercentage}%)
+    `;
+    
     document.getElementById('score').style.display = 'block';
     document.getElementById('restartButton').style.display = 'block';
     document.getElementById('continueButton').style.display = 'block';
@@ -168,16 +184,22 @@ function restartQuiz() {
     document.getElementById('score').style.display = 'none';
     document.getElementById('restartButton').style.display = 'none';
     document.getElementById('continueButton').style.display = 'none';
-    document.querySelector('.level-selection').style.display = 'flex';
-    showQuestionCount();
+    document.getElementById('quiz').style.display = 'none'; // Hide the quiz
+    document.getElementById('start').style.display = 'block'; // Show question count input
+}
+
+// Continue to level selection
+function goToGrades() {
+    currentQuestionIndex = 0;
+    score = 0;
+    document.getElementById('score').style.display = 'none';
+    document.getElementById('restartButton').style.display = 'none';
+    document.getElementById('continueButton').style.display = 'none';
+    document.getElementById('quiz').style.display = 'none'; // Hide the quiz
+    document.querySelector('.level-selection').style.display = 'flex'; // Show level selection
 }
 
 // Placeholder function for back button
 function goToUserHome() {
     alert('Returning to user home.');
-}
-
-// Placeholder function for continue button
-function goToGrades() {
-    alert('Continuing to grades.');
 }

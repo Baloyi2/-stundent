@@ -105,3 +105,31 @@ button:hover {
     font-weight: bold; 
     color: black; 
 }
+
+/* Style for the score section */
+#score {
+    margin: 20px 0; /* Add margin for spacing */
+    font-size: 1.5em; /* Larger font for score */
+    text-align: center; /* Center the score text */
+    color: #f1c40f; /* Highlight score color */
+}
+
+/* Style for the result image */
+#resultImage {
+    display: block; /* Ensure the image behaves like a block element */
+    margin: 0 auto; /* Center the image horizontally */
+    width: 100%; /* Full width */
+    max-width: 300px; /* Limit maximum width */
+    margin-top: 20px; /* Add space above the image */
+}
+
+/* Button styles for better visibility */
+#restartButton, #continueButton {
+    margin: 10px; 
+    padding: 10px 15px; 
+    background-color: rgba(231, 76, 60, 0.7); /* Red for restart */
+}
+
+#continueButton {
+    background-color: rgba(46, 204, 113, 0.7); /* Green for continue */
+}
